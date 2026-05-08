@@ -1,0 +1,56 @@
+body {
+    background: #f4f6f8;
+}
+
+/* HEADER */
+.dept-header {
+    background: linear-gradient(to right, #0b7a3c, #129a55);
+    color: white;
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.dept-header h1 {
+    font-size: 34px;
+    margin-bottom: 10px;
+}
+
+/* CONTAINER */
+.dept-container {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 0 20px;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+}
+
+/* CARDS */
+.dept-card {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.dept-card h3 {
+    color: #0b7a3c;
+    margin-bottom: 10px;
+}
+
+.dept-card p {
+    font-size: 15px;
+    color: #444;
+    line-height: 1.6;
+}
+
+/* FOOTER */
+.dept-footer {
+    background: #222;
+    color: #aaa;
+    text-align: center;
+    padding: 15px;
+    font-size: 13px;
+    margin-top: 40px;
+}

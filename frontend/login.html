@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>College Login Portal</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+
+<body>
+
+    <div class="auth-bg">
+
+        <div class="college-header">
+            <img src="/backend/uploads/witlogo.png" alt="College Logo">
+            <h1>Dr. A. P. J. Abdul Kalam Women’s Institute of Technology</h1>
+            <p>A Unit of Lalit Narayan Mithila University, Darbhanga</p>
+        </div>
+
+        <div class="auth-box">
+            <h2>Login Portal</h2>
+
+            <form id="loginForm">
+                <input type="email" id="email" name="email" placeholder="College Email ID" required>
+                <input type="password" id="password" name="password" placeholder="Password" required>
+                <span class="forgot-link" id="openForgotModal">Forgot Password?</span>
+                <div id="loginMsg" style="text-align: center; margin-bottom: 10px; font-weight: bold; font-size: 14px;"></div>
+                <button type="submit">Login</button>
+            </form>
+
+            <p class="switch">
+                New student?
+                <a href="register.html">Register here</a>
+            </p>
+        </div>
+
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div id="forgotModal" class="modal">
+        <div class="modal-content auth-box">
+            <span class="close-btn" id="closeForgotModal">&times;</span>
+            <h2 style="margin-top: 10px;">Reset Password</h2>
+            <form id="forgotForm">
+                <input type="email" id="forgotEmail" placeholder="Enter Registered Email" required>
+                <input type="password" id="newPassword" placeholder="Enter New Password" required>
+                <button type="submit">Reset Password</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/login.js"></script>
+</body>
+
+</html>

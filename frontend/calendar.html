@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Academic Calendar | College Smart Communication</title>
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/notices.css">
+    <style>
+        .calendar-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+        }
+
+        .day-name {
+            text-align: center;
+            font-weight: 700;
+            color: #0b7a3c;
+            padding: 10px;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        .day-cell {
+            aspect-ratio: 1/1;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 10px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .day-cell:hover {
+            border-color: #0b7a3c;
+            background: #f9fffb;
+        }
+
+        .day-cell.selected {
+            border: 2px solid #e67e22 !important;
+            background: #fff5e6 !important;
+            box-shadow: 0 0 10px rgba(230, 126, 34, 0.3);
+        }
+
+        .day-number {
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .day-status {
+            font-size: 10px;
+            text-transform: uppercase;
+            padding: 2px 6px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .status-class {
+            background: #e8f5ee;
+            color: #0b7a3c;
+        }
+
+        .status-holiday {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .status-weakoff {
+            background: #f3f4f6;
+            color: #4b5563;
+        }
+
+        .admin-controls {
+            background: #f4f6f8;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .control-group select,
+        .control-group input {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+
+        .btn-nav {
+            background: #0b7a3c;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .legend {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+            font-size: 13px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+        }
+
+        .empty-cell {
+            background: #fdfdfd;
+            cursor: default;
+        }
+
+        .empty-cell:hover {
+            border-color: #eee;
+            background: #fdfdfd;
+        }
+
+        @media (max-width: 768px) {
+            .calendar-grid {
+                gap: 5px;
+            }
+
+            .day-number {
+                font-size: 14px;
+            }
+
+            .day-status {
+                font-size: 8px;
+                padding: 1px 4px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <script>const REQUIRED_ROLE = 'any';</script>
+    <script src="js/auth-guard.js"></script>
+    <center>
+        <header class="college-header">
+            <img src="/backend/uploads/witlogo.png" alt="Left Logo" class="college-logo left">
+            <div class="college-title">
+                <h1>Dr. A. P. J. Abdul Kalam Women’s Institute of Technology</h1>
+                <p>A Unit of Lalit Narayan Mithila University, Darbhanga<br>(Under Self Finance Mode) | AICTE Approved</p>
+            </div>
+            <img src="/backend/uploads/lnmulogo.jpg" alt="Right Logo" class="college-logo right">
+        </header>
+    </center>
+
+    <nav class="college-navbar">
+        <div class="nav-left"><a href="index.html">🏠 Home</a></div>
+        <div class="nav-right">
+            <a href="notices.html" id="backToDash">⬅️ Dashboard</a>
+            <a href="#" onclick="doLogout()" class="nav-btn">Logout</a>
+        </div>
+    </nav>
+
+    <div class="calendar-container">
+        <!-- EDIT MODAL -->
+        <div id="editCalendarModal"
+            style="display:none; position:fixed; z-index:9999; inset:0; background:rgba(0,0,0,0.6); backdrop-filter:blur(4px); justify-content:center; align-items:center;">
+            <div
+                style="background:#fff; border-radius:14px; padding:32px; width:400px; max-width:95vw; position:relative;">
+                <span onclick="document.getElementById('editCalendarModal').style.display='none'"
+                    style="position:absolute;right:16px;top:12px;font-size:22px;cursor:pointer;color:#888;">✕</span>
+                <h2 style="color:#0b7a3c; margin-bottom:20px;">Edit Date Status</h2>
+                <p id="editDateText" style="font-weight:600; margin-bottom:5px; color:#555;"></p>
+                <p id="editTargetText"
+                    style="font-size:12px; color:#666; margin-bottom:15px; background:#f0f7f3; padding:8px; border-radius:6px; border-left:4px solid #0b7a3c;">
+                </p>
+
+                <form id="editCalendarForm">
+                    <input type="hidden" id="editDate">
+                    <label style="display:block; margin-bottom:8px; font-weight:600; font-size:14px;">Status</label>
+                    <select id="editStatus"
+                        style="width:100%; padding:10px; margin-bottom:15px; border:1px solid #ddd; border-radius:8px;">
+                        <option value="Class">Class</option>
+                        <option value="Holiday">Holiday</option>
+                        <option value="Weekly Off">Weekly Off</option>
+                    </select>
+
+                    <label style="display:block; margin-bottom:8px; font-weight:600; font-size:14px;">Description /
+                        Note</label>
+                    <input type="text" id="editDescription"
+                        style="width:100%; padding:10px; margin-bottom:20px; border:1px solid #ddd; border-radius:8px;"
+                        placeholder="e.g. Republic Day">
+
+                    <button type="submit"
+                        style="width:100%; padding:12px; background:#0b7a3c; color:#fff; border:none; border-radius:8px; cursor:pointer; font-weight:600;">Save
+                        Changes</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="adminPanel" class="admin-controls" style="display:none;">
+            <div class="control-group">
+                <label>Branch</label>
+                <select id="selBranch">
+                    <option value="All">All Branches</option>
+                    <option value="CSE">CSE</option>
+                    <option value="IT">IT</option>
+                    <option value="ECE">ECE</option>
+                    <option value="EE">EE</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label>Batch</label>
+                <select id="selBatch">
+                    <option value="All">All Batches</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                </select>
+            </div>
+            <button id="btnLoad" class="btn-nav">🔄 Sync Data</button>
+
+            <div style="margin-left: 20px; border-left: 1px solid #ccc; padding-left: 20px; display: flex; gap: 10px;">
+                <button id="btnBulkMode" class="btn-nav" style="background:#2c3e50;">🖱️ Select Multiple</button>
+                <button id="btnApplyBulk" class="btn-nav" style="background:#e67e22; display:none;">✍️ Edit Selected
+                    (0)</button>
+                <button id="btnClearSel" class="btn-nav" style="background:#7f8c8d; display:none;">✕ Clear</button>
+            </div>
+            <div id="quickSelect" style="display:none; gap:10px; margin-left:10px;">
+                <button id="selSundays" class="btn-nav"
+                    style="background:#9b59b6; padding:4px 10px; font-size:12px;">All Sundays</button>
+                <button id="selSaturdays" class="btn-nav"
+                    style="background:#9b59b6; padding:4px 10px; font-size:12px;">All Saturdays</button>
+            </div>
+            <p style="font-size: 12px; color: #666; margin-left: auto;">*Admin: Click dates to cycle/edit</p>
+        </div>
+
+        <div id="statusDisplay"
+            style="margin-bottom: 15px; font-weight: 600; color: #0b7a3c; font-size: 14px; text-align: center;">
+            Showing Schedule for: All Branches | All Batches
+        </div>
+
+        <div class="calendar-header">
+            <button id="prevMonth" class="btn-nav">◀ Prev</button>
+            <h2 id="monthYearDisplay">Month Year</h2>
+            <button id="nextMonth" class="btn-nav">Next ▶</button>
+        </div>
+
+        <div class="calendar-grid" id="calendarGrid">
+            <!-- Filled by JS -->
+        </div>
+
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color status-class"></div> Class
+            </div>
+            <div class="legend-item">
+                <div class="legend-color status-holiday"></div> Holiday
+            </div>
+            <div class="legend-item">
+                <div class="legend-color status-weakoff"></div> Weekly Off
+            </div>
+        </div>
+    </div>
+
+     <footer>
+        <p>© 2026 Dr. A. P. J. Abdul Kalam Women's Institute of Technology</p>
+        <p>A Unit of Lalit Narayan Mithila University, Darbhanga &nbsp;|&nbsp; Developed as an Academic Project</p>
+    </footer>
+
+    <script src="js/calendar.js"></script>
+    <script>
+        function doLogout() {
+            localStorage.removeItem("loggedEmail");
+            localStorage.removeItem("loggedRole");
+            window.location.replace("index.html");
+        }
+    </script>
+</body>
+
+</html>

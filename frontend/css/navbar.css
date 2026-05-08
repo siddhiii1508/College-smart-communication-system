@@ -1,0 +1,114 @@
+.college-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+    background: #ffffff;
+    border-bottom: 3px solid #0b7a3c;
+}
+
+.college-logo {
+    width: 90px;
+    height: auto;
+}
+
+.college-title {
+    text-align: center;
+    flex: 1;
+    padding: 0 20px;
+}
+
+.college-title h1 {
+    font-size: 32px;
+    /* BIG & DOMINANT */
+    color: #0b7a3c;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.college-title p {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.4;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+    background: #f4f6f8;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* ── STICKY FOOTER ── */
+footer {
+    background: #1a1a2e;
+    color: #aaa;
+    text-align: center;
+    padding: 16px 20px;
+    font-size: 13px;
+    margin-top: auto;   /* pushes footer to bottom */
+    border-top: 3px solid #0b7a3c;
+}
+
+footer p {
+    margin: 4px 0;
+    line-height: 1.5;
+}
+.college-navbar {
+    background: #0b7a3c;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 40px;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    font-weight: 600;
+}
+
+.nav-left img {
+    width: 40px;
+}
+
+.nav-right a {
+    color: white;
+    margin-left: 18px;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.nav-right a:hover {
+    text-decoration: underline;
+}
+
+.nav-btn {
+    background: #e74c3c;
+    color: white !important;
+    padding: 6px 16px;
+    border-radius: 4px;
+    margin-left: 12px;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.nav-btn:hover {
+    background: #c0392b;
+}
+
+.nav-btn.outline {
+    background: transparent;
+    border: 1px solid white;
+    color: white !important;
+}

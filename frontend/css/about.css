@@ -1,0 +1,70 @@
+body {
+    background: #f4f6f8;
+}
+
+/* HEADER */
+.about-header {
+    background: linear-gradient(to right, #0b7a3c, #129a55);
+    color: white;
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.about-header h1 {
+    font-size: 34px;
+    margin-bottom: 10px;
+}
+
+.about-header p {
+    font-size: 16px;
+    opacity: 0.95;
+}
+
+/* MAIN CONTAINER */
+.about-container {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 0 20px;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+}
+
+/* CARDS */
+.about-card {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.about-card h2 {
+    color: #0b7a3c;
+    margin-bottom: 12px;
+}
+
+.about-card p {
+    font-size: 15px;
+    color: #444;
+    line-height: 1.6;
+}
+
+.about-card ul {
+    padding-left: 18px;
+}
+
+.about-card li {
+    font-size: 15px;
+    margin-bottom: 8px;
+}
+
+/* FOOTER */
+.about-footer {
+    background: #222;
+    color: #aaa;
+    text-align: center;
+    padding: 15px;
+    font-size: 13px;
+    margin-top: 40px;
+}

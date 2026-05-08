@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>College Smart Communication System</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="stylesheet" href="css/home.css">
+</head>
+
+<body>
+    <!-- If already logged in, go straight to notices -->
+    <!-- Remove auto-redirect to allow student to see home page with profile -->
+    <script>
+        // We will handle logic inside a dedicated script now
+    </script>
+
+    <!-- TOP HEADER -->
+    <center>
+        <header class="college-header">
+            <img src="/backend/uploads/witlogo.png" alt="Left Logo" class="college-logo left">
+
+            <div class="college-title">
+                <h1>Dr. A. P. J. Abdul Kalam Women’s Institute of Technology</h1>
+                <p>
+                    A Unit of Lalit Narayan Mithila University, Darbhanga<br>
+                    (Under Self Finance Mode) | AICTE Approved
+                </p>
+            </div>
+
+            <img src="/backend/uploads/lnmulogo.jpg" alt="Right Logo" class="college-logo right">
+        </header>
+    </center>
+
+    <!-- NAVIGATION BAR -->
+    <nav class="main-nav" id="mainNav">
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="#" id="noticeLink" style="display:none;">Notice Board</a>
+                <a href="#" id="calendarLink" style="display:none;">Academic Calendar</a>
+            </div>
+            <div class="nav-auth" id="navAuth">
+                <a href="login.html" class="btn-nav">Login</a>
+                <a href="register.html" class="btn-nav highlight">Register</a>
+            </div>
+            <div class="nav-profile" id="navProfile" style="display:none;">
+                <div class="user-info">
+                    <span id="greetingText">Welcome, Student</span>
+                    <small id="batchText">Batch: 2022-2026</small>
+                </div>
+                <button onclick="logout()" class="btn-logout">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- IMAGE SLIDER -->
+    <div class="slider-container">
+        <div class="slider">
+            <div class="slide" style="background-image: url('/backend/uploads/image1.png');"></div>
+            <div class="slide" style="background-image: url('/backend/uploads/image2.png');"></div>
+            <div class="slide" style="background-image: url('/backend/uploads/image3.png');"></div>
+            <div class="slide" style="background-image: url('/backend/uploads/image5.png');"></div>
+             <div class="slide" style="background-image: url('/backend/uploads/image6.png');"></div>
+              <div class="slide" style="background-image: url('/backend/uploads/image4.png');"></div>
+               <div class="slide" style="background-image: url('/backend/uploads/image.png');"></div>
+        </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <!-- <nav class="navbar">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="department.html">Departments</a>
+       
+        <a href="login.html" class="nav-btn outline">Login</a>
+        <a href="register.html" class="nav-btn outline">Register</a>
+    </nav> -->
+
+    <!-- HERO SECTION -->
+    <section class="hero" style="position:relative; z-index:2; background: linear-gradient(to bottom, rgba(11, 122, 60, 0.8), #0b7a3c);">
+        <div class="hero-content">
+            <div id="heroWelcome" style="display:none; margin-bottom:20px;">
+                <h3 id="heroName" style="color:black; font-size:32px; font-weight:800;">Hello, Student!</h3>
+                <p id="heroMsg" style="font-size:20px; color:black; font-weight:500;">Ready for another productive day of learning?</p>
+            </div>
+            <h2 style="font-size:48px; font-weight:800; text-shadow: 0 4px 10px rgba(0,0,0,0.3);">Nurturing Technical Mastery with a Soul</h2>
+            <p style="font-size:22px; margin-top:10px; font-weight:500;">
+                Empowering the women of Bihar to lead the global digital revolution.
+            </p>
+
+        </div>
+    </section>
+
+    <script src="js/home.js"></script>
+
+    <!-- STATS SECTION -->
+    <div class="stats-container">
+        <div class="stat-item">
+            <h3>18+</h3>
+            <p>Years of Excellence</p>
+        </div>
+        <div class="stat-item">
+            <h3>500+</h3>
+            <p>Active Students</p>
+        </div>
+        <div class="stat-item">
+            <h3>50+</h3>
+            <p>Qualified Faculty</p>
+        </div>
+        <div class="stat-item">
+            <h3>100%</h3>
+            <p>Placement Support</p>
+        </div>
+    </div>
+
+    <!-- HISTORY & VISION -->
+    <div class="section-container">
+        <div class="history-vision">
+            <div class="hv-card">
+                <h3>Our History</h3>
+                <p>
+                    Dr. APJ Abdul Kalam Women's Institute of Technology (APJAKWIT), Darbhanga, was established in 2005.
+                    It is a premier technical institution of national importance, specifically designed for women.
+                    The institute is a constituent unit of L. N. Mithila University, Darbhanga.
+                </p>
+            </div>
+            <div class="hv-card">
+                <h3>Our Vision</h3>
+                <p>
+                    To be a leading technical institute for women, fostering innovation, leadership, and ethical values.
+                    We strive to create an environment where women can excel in engineering and contribute to the
+                    technological advancement of the country.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ABOUT SECTION -->
+    <div class="section-container">
+        <div class="about-flex">
+            <div class="about-text">
+                <h2 class="section-title" style="text-align:left; padding-left:0;">About APJAKWIT</h2>
+                <p>
+                    Dr. APJ Abdul Kalam Women's Institute of Technology (APJAKWIT) is a premier unit of Lalit Narayan
+                    Mithila University (LNMU), Darbhanga.
+                    Established with a vision to bridge the gender gap in technical education, we provide world-class
+                    training in CSE, IT, and MCA.
+                </p>
+                <div class="director-quote">
+                    "We don't just build engineers; we build the future leaders of India's digital transformation."
+                    <br><small>— Prof. Ajay Nath Jha, Director</small>
+                </div>
+            </div>
+            <div style="flex:1; text-align:center;">
+                <div style="background:#0b7a3c; color:white; padding:30px; border-radius:100px; display:inline-block;">
+                    <span style="font-size:40px; font-weight:800;">18+</span><br>Years of Excellence
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MENTORS -->
+    <div class="section-container">
+        <h3 class="section-title">Our Distinguished Mentors</h3>
+        <div class="mentor-grid">
+            <div class="mentor-card">
+                <h4>Prof. Sanjay Kr. Choudhary</h4>
+                <p>Vice-Chancellor, LNMU</p>
+            </div>
+            <div class="mentor-card">
+                <h4>Dr. Divya Rani Hansda</h4>
+                <p>Registrar, LNMU</p>
+            </div>
+            <div class="mentor-card">
+                <h4>Prof. Ajay Nath Jha</h4>
+                <p>Director, APJAKWIT</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- COURSES -->
+    <div class="section-container">
+        <h3 class="section-title">Academic Programmes</h3>
+        <div class="course-grid">
+            <div class="course-card">
+                <h3>B.Tech</h3>
+                <p>CSE & Information Technology</p>
+            </div>
+            <div class="course-card">
+                <h3>Bioinformatics</h3>
+                <p>Modern Biological Computing</p>
+            </div>
+            <div class="course-card">
+                <h3>MCA</h3>
+                <p>Master of Computer Applications</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- IMPACT -->
+    <div class="section-container">
+        <h3 class="section-title">Global Impact & Placements</h3>
+        <div class="impact-grid">
+            <div class="impact-card">
+                <span class="name">Pragati Kumari</span>
+                <span class="comp">Hays Business Solution</span>
+            </div>
+            <div class="impact-card">
+                <span class="name">Shilpy</span>
+                <span class="comp">Capgemini</span>
+            </div>
+            <div class="impact-card">
+                <span class="name">Aprajita Kumari</span>
+                <span class="comp">Capgemini</span>
+            </div>
+            <div class="impact-card">
+                <span class="name">Priya Kumari</span>
+                <span class="comp">Cognizant</span>
+            </div>
+            <div class="impact-card">
+                <span class="name">Prerna Priya</span>
+                <span class="comp">Infosys</span>
+            </div>
+            <div class="impact-card">
+                <span class="name">Shivani Sinha</span>
+                <span class="comp">WIPRO</span>
+            </div>
+        </div>
+        <p style="text-align:center; margin-top:20px; font-weight:600; color:#0b7a3c;">
+            🚀 Top Students Placed in Microsoft with 45 LPA Packages!
+        </p>
+    </div>
+
+    <!-- STUDENT SPOTLIGHTS -->
+    <div class="section-container">
+        <h3 class="section-title">Student Spotlights</h3>
+        <div class="spotlight-grid">
+            <div class="spotlight-card">
+                <h5>🏆 Hackathon Winners</h5>
+                <p>WIT Team won 1st prize in Smart India Hackathon 2024, showcasing exceptional problem-solving skills.
+                </p>
+            </div>
+            <div class="spotlight-card">
+                <h5>🏅 NPTEL Toppers</h5>
+                <p>10 students recognized as Gold Medalists in NPTEL national certifications this semester.</p>
+            </div>
+            <div class="spotlight-card">
+                <h5>📈 Career Milestone</h5>
+                <p>Recorded a 25% increase in average package for the 2025 graduating batch.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- RECENT EVENTS -->
+    <div class="section-container">
+        <h3 class="section-title">Life at APJAKWIT</h3>
+        <div class="event-grid">
+            <div class="event-card">
+                <img src="/backend/uploads/image4.png" alt="Children's Day">
+                <h4>Children's Day 2025</h4>
+                <a href="#" class="btn-gallery">View Gallery →</a>
+            </div>
+            <div class="event-card">
+                <img src="/backend/uploads/image2.png" alt="Teacher's Day">
+                <h4>Teacher's Day 2025</h4>
+                <a href="#" class="btn-gallery">View Gallery →</a>
+            </div>
+            <div class="event-card">
+                <img src="/backend/uploads/image1.png" alt="Campus">
+                <h4>College Campus</h4>
+                <a href="#" class="btn-gallery">View Gallery →</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- FACILITIES -->
+    <div class="section-container">
+        <h3 class="section-title">World Class Facilities</h3>
+        <div class="mentor-grid">
+            <div class="mentor-card">
+                <span style="font-size:30px;">📶</span>
+                <h4>Free Wi-Fi</h4>
+                <p>Campus-wide high speed connectivity</p>
+            </div>
+            <div class="mentor-card">
+                <span style="font-size:30px;">💻</span>
+                <h4>NKN Nodes</h4>
+                <p>National Knowledge Network cluster</p>
+            </div>
+            <div class="mentor-card">
+                <span style="font-size:30px;">💳</span>
+                <h4>Credit Card</h4>
+                <p>Student Credit Card support</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer style="background:#1a1a2e; color:#eee; padding:50px 20px; border-top:5px solid #0b7a3c; margin-top:50px;">
+        <div class="footer-grid">
+            <div class="footer-section">
+                <h4>About Institute</h4>
+                <p style="font-size:13px; color:#ccc; line-height:1.6;">
+                    Dr. APJ Abdul Kalam Women's Institute of Technology is a premier unit of LNMU, Darbhanga, 
+                    dedicated to excellence in technical education for women.
+                </p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Academic Programmes</a></li>
+                    <li><a href="#">Online Admission</a></li>
+                    <li><a href="#">Faculty Details</a></li>
+                    <li><a href="#">Mandatory Disclosure</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="#">T & P Cell</a></li>
+                    <li><a href="#">Career Opportunities</a></li>
+                    <li><a href="#">Alumni Network</a></li>
+                    <li><a href="#">Anti-Ragging Cell</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <p style="font-size:13px; color:#ccc;">
+                    Navin Campus, Kameshwar Nagar,<br>
+                    Darbhanga - 846004<br>
+                    📞 06272-246597<br>
+                    📧 apjakwit.lnmu@gmail.com
+                </p>
+            </div>
+        </div>
+        <hr style="opacity:0.1; margin:40px 0;">
+        <div style="text-align:center;">
+            <p>© 2026 Dr. APJ Abdul Kalam Women's Institute of Technology</p>
+            <p style="font-size:12px; opacity:0.7; margin-top:5px;">A Unit of Lalit Narayan Mithila University, Darbhanga</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>College Notice Board</title>
+    <!-- Prevent browser from caching this page -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/notices.css">
+    <style>
+        .info-panel ul li {
+            cursor: pointer;
+            transition: color 0.2s, transform 0.2s;
+            padding: 4px 0;
+        }
+        .info-panel ul li:hover {
+            color: #0b7a3c;
+            transform: translateX(5px);
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- AUTH GUARD: student access only -->
+    <script>const REQUIRED_ROLE = 'student';</script>
+    <script src="js/auth-guard.js"></script>
+    <center>
+        <header class="college-header">
+            <img src="/backend/uploads/witlogo.png" alt="Left Logo" class="college-logo left">
+
+            <div class="college-title">
+                <h1>Dr. A. P. J. Abdul Kalam Women’s Institute of Technology</h1>
+                <p>
+                    A Unit of Lalit Narayan Mithila University, Darbhanga<br>
+                    (Under Self Finance Mode) | AICTE Approved
+                </p>
+            </div>
+
+            <img src="/backend/uploads/lnmulogo.jpg" alt="Right Logo" class="college-logo right">
+        </header>
+    </center>
+    <!-- NAVBAR -->
+
+    <nav class="college-navbar">
+        <div class="nav-left"><span>🎓 Student Portal</span></div>
+        <div class="nav-right">
+            <a href="index.html">Home</a>
+            <a href="#" id="logoutBtn" class="nav-btn" onclick="doLogout()">Logout</a>
+        </div>
+    </nav>
+
+    <!-- MAIN LAYOUT -->
+    <div class="notice-container">
+
+        <!-- LEFT FILTER -->
+        <aside class="filter-panel">
+            <h3>Filter Notices</h3>
+
+            <label><input type="checkbox" class="cat-filter" value="Academic"> Academic</label>
+            <label><input type="checkbox" class="cat-filter" value="Examination"> Examination</label>
+            <label><input type="checkbox" class="cat-filter" value="Events"> Events</label>
+            <label><input type="checkbox" class="cat-filter" value="Placement"> Placement</label>
+            <label><input type="checkbox" class="cat-filter" value="General"> General</label>
+
+            <button id="clearFilter"
+                style="margin-top:12px; width:100%; padding:8px; background:#0b7a3c; color:white; border:none; border-radius:5px; cursor:pointer;">Clear
+                Filter</button>
+        </aside>
+
+        <!-- CENTER NOTICES -->
+        <main class="notice-board" id="noticeboard">
+            <!-- dynamically filled by notices.js -->
+        </main>
+
+        <!-- RIGHT PANEL: Profile + Info -->
+        <aside class="info-panel">
+
+            <!-- PROFILE CARD -->
+            <div class="profile-card">
+                <div class="profile-pic-wrap" id="profilePicWrap">
+                    <img id="profileImg" src="/uploads/default-avatar.png" alt="Profile"
+                        onerror="this.src='https://ui-avatars.com/api/?name=Student&background=0b7a3c&color=fff&size=120'">
+                    <span class="pic-edit-icon" id="triggerPicUpload" title="Change Photo">📷</span>
+                </div>
+                <h4 id="profileName">Loading...</h4>
+                <p id="profileEmail" class="profile-meta">—</p>
+                <p id="profileBranch" class="profile-meta">🎓 —</p>
+                <p id="profileSemester" class="profile-meta">📖 —</p>
+                <p id="profileBatch" class="profile-meta">📅 —</p>
+                <button class="edit-profile-btn" id="openEditProfile">✏️ Edit Profile</button>
+            </div>
+
+            <h3 style="margin-top:20px;">Important</h3>
+            <ul id="importantLinks">
+                <li id="linkExamForm">Exam Form Last Date</li>
+                <li id="linkInternal">Internal Assessment</li>
+                <li id="linkHoliday">Holiday Notice</li>
+            </ul>
+
+            <h3>Quick Links</h3>
+            <ul id="quickLinks">
+                <li id="linkCalendar"><a href="calendar.html" style="text-decoration:none; color:inherit;">Academic Calendar</a></li>
+                <li id="linkSyllabus">Syllabus</li>
+                <li id="linkPortal">University Portal</li>
+            </ul>
+        </aside>
+
+    </div>
+
+    <!-- ── EDIT PROFILE MODAL ── -->
+    <div id="editProfileModal"
+        style="display:none; position:fixed; z-index:9999; inset:0; background:rgba(0,0,0,0.6); backdrop-filter:blur(4px); justify-content:center; align-items:center;">
+        <div
+            style="background:#fff; border-radius:14px; padding:32px; width:420px; max-width:95vw; position:relative; animation:slideIn .3s ease;">
+            <span onclick="document.getElementById('editProfileModal').style.display='none'"
+                style="position:absolute;right:16px;top:12px;font-size:22px;cursor:pointer;color:#888;">✕</span>
+            <h2 style="color:#0b7a3c; margin-bottom:20px;">Edit Profile</h2>
+
+            <form id="editProfileForm" enctype="multipart/form-data">
+                <input type="hidden" id="editEmail">
+
+                <label class="ep-label">Full Name</label>
+                <input type="text" id="editName" class="ep-input" placeholder="Full Name">
+
+                <label class="ep-label">Branch</label>
+                <select id="editBranch" class="ep-input">
+                    <option value="">-- Select Branch --</option>
+                    <option value="CSE">CSE</option>
+                    <option value="IT">IT</option>
+                    <option value="ECE">ECE</option>
+                    <option value="EE">EE</option>
+                    <option value="ME">ME</option>
+                    <option value="CE">CE</option>
+                </select>
+
+                <label class="ep-label">Semester</label>
+                <select id="editSemester" class="ep-input">
+                    <option value="">-- Select Semester --</option>
+                    <option value="1">1st Semester</option>
+                    <option value="2">2nd Semester</option>
+                    <option value="3">3rd Semester</option>
+                    <option value="4">4th Semester</option>
+                    <option value="5">5th Semester</option>
+                    <option value="6">6th Semester</option>
+                    <option value="7">7th Semester</option>
+                    <option value="8">8th Semester</option>
+                </select>
+
+                <div style="display:flex; gap:10px;">
+                    <div style="flex:1">
+                        <label class="ep-label">Batch Start</label>
+                        <input type="number" id="editBatchStart" class="ep-input" placeholder="e.g. 2023" min="2000"
+                            max="2035">
+                    </div>
+                    <div style="flex:1">
+                        <label class="ep-label">Batch End</label>
+                        <input type="number" id="editBatchEnd" class="ep-input" placeholder="e.g. 2027" min="2000"
+                            max="2040">
+                    </div>
+                </div>
+
+                <label class="ep-label">Profile Picture</label>
+                <input type="file" id="editPicFile" class="ep-input" accept="image/*">
+
+                <button type="submit"
+                    style="width:100%; padding:12px; background:#0b7a3c; color:#fff; border:none; border-radius:8px; font-size:15px; cursor:pointer; margin-top:8px;">Save
+                    Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- hidden file input for pic-only upload from profile card -->
+    <input type="file" id="picOnlyInput" accept="image/*" style="display:none">
+
+    <!-- ── NOTICE DETAIL MODAL ── -->
+    <div id="noticeDetailModal">
+        <div class="nd-box">
+            <div class="nd-header">
+                <h3 id="ndTitle">—</h3>
+                <button class="nd-close" id="ndClose" title="Close">✕</button>
+            </div>
+            <div class="nd-body">
+                <div class="nd-meta" id="ndMeta"></div>
+                <div class="nd-desc" id="ndDesc"></div>
+                <div class="nd-info" id="ndInfo"></div>
+                <div id="ndPreview"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 Dr. A. P. J. Abdul Kalam Women's Institute of Technology</p>
+        <p>A Unit of Lalit Narayan Mithila University, Darbhanga &nbsp;|&nbsp; Developed as an Academic Project</p>
+    </footer>
+
+    <script src="js/notices.js"></script>
+</body>
+
+</html>

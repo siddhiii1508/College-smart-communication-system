@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel | College Smart Communication System</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <style>
+        .auth-bg {
+            background-image: none;
+            background: #f4f6f8;
+            padding-top: 0;
+            justify-content: flex-start;
+            align-items: stretch;
+        }
+
+        .college-header {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 10px;
+        }
+ .college-header h1{
+    font-size: 32px;
+ }
+        .college-navbar {
+            margin-top: 0;
+        }
+
+        .admin-page {
+            display: flex;
+            justify-content: center;
+            padding: 32px 20px;
+            flex: 1;
+        }
+
+        /* ── ADD NOTICE FORM ── */
+        .add-box {
+            background: #fff;
+            border-radius: 14px;
+            padding: 32px 30px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.09);
+            width: 100%;
+            max-width: 520px;
+        }
+
+        .add-box h2 {
+            color: #0b7a3c;
+            font-size: 20px;
+            margin: 0 0 22px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #e8f5ee;
+        }
+
+        .add-box input[type="text"],
+        .add-box textarea,
+        .add-box select,
+        .add-box input[type="date"],
+        .add-box input[type="file"] {
+            width: 100%;
+            padding: 11px 13px;
+            margin-bottom: 14px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            box-sizing: border-box;
+            background: #fff;
+            color: #333;
+            font-family: inherit;
+            transition: border-color .2s;
+        }
+
+        .add-box input:focus,
+        .add-box textarea:focus,
+        .add-box select:focus {
+            outline: none;
+            border-color: #0b7a3c;
+        }
+
+        .add-box textarea {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        .add-box select {
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23555' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+        }
+
+        .section-tag {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #0b7a3c;
+            letter-spacing: 1px;
+            margin: 2px 0 8px;
+            border-top: 1px solid #e0f0e8;
+            padding-top: 12px;
+        }
+
+        .row2 {
+            display: flex;
+            gap: 10px;
+        }
+
+        .row2>* {
+            flex: 1;
+        }
+
+        .optional-tag {
+            font-size: 11px;
+            color: #888;
+            margin: -8px 0 10px;
+        }
+
+        .add-box button[type="submit"] {
+            width: 100%;
+            padding: 13px;
+            background: #0b7a3c;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background .2s;
+            margin-top: 4px;
+            font-family: inherit;
+        }
+
+        .add-box button[type="submit"]:hover {
+            background: #096530;
+        }
+
+        #msg {
+            font-weight: 600;
+            text-align: center;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- AUTH GUARD -->
+    <script>const REQUIRED_ROLE = 'admin';</script>
+    <script src="js/auth-guard.js"></script>
+
+    <!-- COLLEGE HEADER -->
+    <center>
+        <header class="college-header">
+            <img src="/backend/uploads/witlogo.png" alt="Left Logo" class="college-logo left">
+            <div class="college-title">
+                <h1>Dr. A. P. J. Abdul Kalam Women's Institute of Technology</h1>
+                <p>A Unit of Lalit Narayan Mithila University, Darbhanga<br>(Under Self Finance Mode) | AICTE Approved</p>
+            </div>
+            <img src="/backend/uploads/lnmulogo.jpg" alt="Right Logo" class="college-logo right">
+        </header>
+    </center>
+
+    <!-- NAVBAR -->
+    <nav class="college-navbar">
+        <div class="nav-left"><span>🛡️ Admin Panel</span></div>
+        <div class="nav-right">
+            <a href="admin.html">➕ Add Notice</a>
+            <a href="calendar.html">🗓️ Academic Calendar</a>
+            <a href="admin-notices.html">📋 Previous Notices</a>
+            <a href="#" onclick="(function(){localStorage.removeItem('loggedEmail');localStorage.removeItem('loggedRole');window.location.replace('index.html');})()" class="nav-btn">Logout</a>
+        </div>
+    </nav>
+
+    <!-- FORM -->
+    <div class="admin-page">
+        <div class="add-box">
+            <h2>➕ Post New Notice</h2>
+            <p style="font-size: 11px; color: #666; margin-bottom: 15px; background: #eef7f2; padding: 10px; border-radius: 6px; border-left: 4px solid #0b7a3c;">
+                💡 <b>Tip:</b> To update <b>Quick Links</b> (Exam Form, Holiday), use those words in your Title.
+            </p>
+            <form id="noticeForm" enctype="multipart/form-data">
+
+                <input type="text" name="title" placeholder="Notice Title" required>
+                <textarea name="description" placeholder="Notice Description" required></textarea>
+
+                <select name="category" required>
+                    <option value="">🏷️ Select Category</option>
+                    <option value="Examination">📋 Examination</option>
+                    <option value="Academic">📚 Academic</option>
+                    <option value="Events">🎉 Events</option>
+                    <option value="Placement">💼 Placement</option>
+                    <option value="Syllabus">📖 Syllabus</option>
+                    <option value="Academic Calendar">🗓️ Academic Calendar</option>
+                    <option value="General">📢 General</option>
+                </select>
+
+                <div class="section-tag">🎯 Target Audience</div>
+                <div class="row2">
+                    <select name="target_branch" id="targetBranch" required>
+                        <option value="All">🌐 All Branches</option>
+                        <option value="CSE">CSE</option>
+                        <option value="IT">IT</option>
+                        <option value="ECE">ECE</option>
+                        <option value="EE">EE</option>
+                        <option value="ME">ME</option>
+                        <option value="CE">CE</option>
+                    </select>
+                    <select name="target_batch" id="targetBatch" required>
+                        <option value="All">📅 All Batches</option>
+                    </select>
+                </div>
+
+                <div class="section-tag">⏳ Expiry Date (Optional)</div>
+                <p class="optional-tag">Notice auto-hides after this date in student portal</p>
+                <input type="date" name="expiry_date" id="expiryDate">
+
+                <input type="file" name="file">
+                <button type="submit">➕ Post Notice</button>
+            </form>
+            <p id="msg"></p>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 Dr. A. P. J. Abdul Kalam Women's Institute of Technology</p>
+        <p>A Unit of Lalit Narayan Mithila University, Darbhanga &nbsp;|&nbsp; Developed as an Academic Project</p>
+    </footer>
+
+    <script src="js/admin.js"></script>
+</body>
+
+</html>

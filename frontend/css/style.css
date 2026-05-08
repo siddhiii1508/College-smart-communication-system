@@ -1,0 +1,23 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 30px;
+}
+
+input,
+textarea,
+select,
+button {
+    width: 300px;
+    padding: 8px;
+}
+
+button {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #45a049;
+}
