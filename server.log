@@ -1,0 +1,17 @@
+
+> backend@1.0.0 start
+> node server.js
+
+AUTH ROUTES FILE LOADED
+NOTICE ROUTES LOADED
+Server running on port 3000
+Executing (default): SELECT 1+1 AS result
+Executing (default): SELECT 1+1 AS result
+✅ Database connected
+Database connected
+Executing (default): SELECT `id`, `name`, `email`, `password`, `role` FROM `users` AS `User` WHERE `User`.`email` = 'vivek123@gmail.com';
+Executing (default): SELECT `id`, `title`, `description`, `file_name`, `department_id` FROM `notices` AS `Notice` ORDER BY `Notice`.`id` DESC;
+Executing (default): SELECT `id`, `title`, `description`, `file_name`, `department_id` FROM `notices` AS `Notice` ORDER BY `Notice`.`id` DESC;
+Executing (default): SELECT `id`, `name`, `email`, `password`, `role` FROM `users` AS `User` WHERE `User`.`email` = 'vivekya9504@gmail.com';
+Executing (default): INSERT INTO `notices` (`id`,`title`,`description`,`file_name`,`department_id`) VALUES (DEFAULT,?,?,?,?);
+Executing (default): SELECT `id`, `title`, `description`, `file_name`, `department_id` FROM `notices` AS `Notice` ORDER BY `Notice`.`id` DESC;
